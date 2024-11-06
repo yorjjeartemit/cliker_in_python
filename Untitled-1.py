@@ -41,7 +41,7 @@ class Label(Area):
         mw.blit(self.image, (self.rect.x + shift_x, self.rect.y + shift_y))
 dsd7_cost = 150
 click = 1
-money = round(100000000)
+money = round(0)
 current_level = 0
 cost_rebith = 1000
 level_rebith = 0
@@ -174,7 +174,7 @@ while running:
                     auto_click = False  
                     auto_click_delay = 2.0  
                     price_dsd2.set_text("auto click-100", 30, None, WHITE)  
-
+            
     if auto_click and time.time() - last_click_time >= auto_click_delay:
         money += click
         money_text.set_text(str(money), 30, None, BLACK)
