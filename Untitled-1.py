@@ -29,50 +29,42 @@ def main():
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    return None  # Вихід із програми
+                    return None  
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    # Перевірка, чи натиснули на текстове поле
                     if rect.collidepoint(event.pos):
                         active = not active
                     else:
                         active = False
 
                 if event.type == pygame.KEYDOWN and active:
-                    if event.key == pygame.K_RETURN:  # Enter підтверджує ввід
+                    if event.key == pygame.K_RETURN:  
                         return nickname
-                    elif event.key == pygame.K_BACKSPACE:  # Видалити символ
+                    elif event.key == pygame.K_BACKSPACE:  
                         nickname = nickname[:-1]
                     else:
-                        nickname += event.unicode  # Додати символ
+                        nickname += event.unicode  
 
-            # Колір рамки в залежності від активності
             color = active_color if active else inactive_color
 
-            # Малюємо текстове поле
             pygame.draw.rect(screen, color, rect, 2)
 
-            # Відображаємо текст
             text_surface = font.render(nickname, True, (255, 255, 255))
             screen.blit(text_surface, (rect.x + 10, rect.y + 10))
 
-            # Оновлення екрану
             pygame.display.flip()
             clock.tick(30)
-    # Функція для завантаження і масштабування фону
     def load_background(image_path, size):
         background_image = pygame.image.load(image_path)
         background_image = pygame.transform.scale(background_image, size)
         return background_image
-    #ще одна функція для регістера
     def Register_id():
         info_running = True
 
-        # Шрифт та кольори
         font = pygame.font.SysFont(None, 30)
-        input_rect = pygame.Rect(150, 150, 300, 50)  # Координати та розміри текстового поля
-        active_color = (0, 255, 0)  # Зелений колір рамки, коли активний
-        inactive_color = (255, 0, 0)  # Червоний колір рамки, коли неактивний
+        input_rect = pygame.Rect(150, 150, 300, 50) 
+        active_color = (0, 255, 0) 
+        inactive_color = (255, 0, 0) 
 
         while info_running:
             mw.fill(GRAY)
@@ -81,21 +73,19 @@ def main():
                 if event.type == pygame.QUIT:
                     info_running = False
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    info_running = False  # Закриття вікна ESC
+                    info_running = False 
 
-            # Малювання тексту "Інструкції"
+ 
             text = font.render("Instructions:", True, WHITE)
             mw.blit(text, (20, 20))
 
-            # Малювання текстового поля для введення
             nickname = input_box(mw, font, input_rect, active_color, inactive_color)
-            if nickname:  # Якщо введений нік не порожній
+            if nickname: 
                 print(f"Ваш нікнейм: {nickname}")
                 info_running = False
 
             pygame.display.flip()
 
-    #ще одна функція
     def show_info_window():
         info_running = True
         while info_running:
@@ -103,9 +93,9 @@ def main():
                 if event.type == pygame.QUIT:
                     info_running = False
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    info_running = False  # Закриття вікна ESC
+                    info_running = False  
                 
-            # Малювання інформаційного вікнаgg
+     
             mw.fill(GRAY)
             font = pygame.font.SysFont(None, 30)
             text = font.render("Instructions:", True, WHITE)
@@ -148,7 +138,6 @@ def main():
     
     ch=pygame.mixer.music.play(-1)
 
-    # Початковий екран
     mw = pygame.display.set_mode(backs, pygame.RESIZABLE)
     background_image = load_background("C:\\Users\\User\\f9b129db1bed0649f9be3639f6e79fb7.jpg", backs)
     clock = pygame.time.Clock()
@@ -180,7 +169,6 @@ def main():
             color = hover_color if self.rect.collidepoint(mouse_pos) and hover_color else border_color
             pygame.draw.rect(mw, color, self.rect, border_width, border_sors)
             mw.blit(self.image, (self.rect.x + shift_x, self.rect.y + shift_y))
-    # Початкові змінні
     dsd7_cost = 150
     click = 1
     money = round(100000)
@@ -381,16 +369,13 @@ def main():
                             auto_click_delay = 2.0
                             bonus_claimed = False
                             
-                            # Оновлення цін зі знижкою
                             price_dsd1_func()
-                            # Оновлення змінниҗх
                             dsd1_cost = cost_full_list['dsd1_cost']
                             dsd2_cost = cost_full_list['dsd2_cost']
                             dsd6_cost = cost_full_list['dsd6_cost']
                             dsd7_cost = cost_full_list['dsd7_cost']
                             click_sound.play()
 
-                            # Оновлення відображення
                             level_text.set_text('Level: ' + str(current_level), 30, None, BLACK)
                             level_rebith.set_text("Rebirth Level: " + str(rebith_level), 30, None, BLACK)
                             rebith.set_text('rebirth: ' + str(cost_rebith), 30, None, BLACK)
